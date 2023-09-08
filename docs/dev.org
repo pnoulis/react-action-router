@@ -1,0 +1,31 @@
+* About
+This file is used as a notepad, useful for brainstorming, keeping track of work
+and logging.
+
+* What is this project about?
+** Problem set definition
+It is about solving the common task of alternating contents of UI components
+based on user actions and URL navigation.
+
+For example:
+
+It is very common for toolbars to contain multiple buttons. Some of these
+buttons may change the contents of the toolbar among producing other side
+effects.
+
+Such a feature would be categorized as a 'user action' of the problem set
+definition.
+
+At the same time, one would also like that same toolbar to be aware of the
+URL location under which it is being rendered and have it behave accordingly.
+
+Such a feature would be categorized as a 'URL navigation' section of the problem
+set definition.
+
+* logs
+** 09/08/23
+First day of development.
+
+Defined the problem set.
+
+Created a new repository with development tools.
