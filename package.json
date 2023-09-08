@@ -1,0 +1,40 @@
+{
+  "name": "react-action-router",
+  "version": "0.0.1",
+  "description": "Responsive UI based on Location and user actions.",
+  "author": "pavlos noulis <pavlos.noulis@gmail.com> (https://github.com/pnoulis)",
+  "homepage": "https://github.com/pnoulis/react-action-router#readme",
+  "bugs": "https://github.com/pnoulis/react-action-router/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pnoulis/react-action-router"
+  },
+  "files": ["dist"],
+  "exports": {
+    ".": "./dist/ReactActionRouter.jsx"
+  },
+  "licence": "MIT",
+  "keywords": ["node", "react", "routes", "router", "responsive-ui"],
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "make dev",
+    "build": "make build"
+  },
+  "engines": {
+    "node": "~20.4.0",
+    "npm": "~9.7.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.48.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite": "^4.4.5"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}

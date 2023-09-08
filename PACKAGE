@@ -1,0 +1,13 @@
+PKG_NAME=react-action-router
+PKG_AUTHOR=pnoul
+PKG_AUTHOR_EMAIL=pavlos.noulis@gmail.com
+PKG_SUMMARY=Responsive UI based on Location and user actions.
+PKG_DESCRIPTION=Responsive UI based on Location and user actions.
+PKG_KEYWORDS=node,react,routes,router,responsive-ui
+PKG_VERSION=0.0.1
+PKG_VVERSION=v0.0.1
+PKG_DISTNAME=react-action-router-v0.0.1
+PKG_REPO=https://github.com/pnoul/react-action-router.git
+PKG_HOMEPAGE=https://github.com/pnoul/react-action-router/#readme
+PKG_BUGREPORT=https://github.com/pnoul/react-action-router/issues
+PKG_DOCS=https://github.com/pnoul/react-action-router/#readme
