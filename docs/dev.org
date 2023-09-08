@@ -22,6 +22,39 @@ URL location under which it is being rendered and have it behave accordingly.
 Such a feature would be categorized as a 'URL navigation' section of the problem
 set definition.
 
+* ReactActionRouter as a Factory function
+
+Just like the createBrowserRouter of react-router-dom, there could be a function
+named createActionRouter that accepts an array of route objects.
+
+A route object could be of the form:
+
+#+begin_src js
+  {
+    // route side effects
+    action: () => {},
+    // route UI
+    element: ReactElement,
+    // route location
+    path: "",
+  }
+#+end_src
+
+To keep things simple createActionRouter would not accept a hierarchical tree of
+routes nor would it introduce special path syntax like regular expressions.
+
+The Route object UI that is currently rendered would only be superseded if a new
+route is pushed on the stack.
+
+** factory function return value
+
+The factory function could return:
+
+- a context
+- a hook
+- Components
+- all of the above
+
 * logs
 ** 09/08/23
 First day of development.
