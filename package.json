@@ -9,12 +9,20 @@
     "type": "git",
     "url": "https://github.com/pnoulis/react-action-router"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": "./dist/ReactActionRouter.jsx"
   },
   "licence": "MIT",
-  "keywords": ["node", "react", "routes", "router", "responsive-ui"],
+  "keywords": [
+    "node",
+    "react",
+    "routes",
+    "router",
+    "responsive-ui"
+  ],
   "type": "module",
   "private": true,
   "scripts": {
@@ -22,8 +30,8 @@
     "build": "make build"
   },
   "engines": {
-    "node": "~20.4.0",
-    "npm": "~9.7.2"
+    "node": "^20.4.0",
+    "npm": "^9.7.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

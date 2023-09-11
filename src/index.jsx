@@ -36,7 +36,7 @@ function Page() {
               </button>
             </>
           </ActionRoute>
-          <ActionRoute path='/banana/.*'>
+          <ActionRoute path="/banana/.*">
             <p>banana</p>
           </ActionRoute>
           <ActionRoute name="zito">
@@ -46,7 +46,9 @@ function Page() {
               onClick={() => {
                 ctx.back();
               }}
-            >go back from zito</button>
+            >
+              go back from zito
+            </button>
           </ActionRoute>
           <button
             type="button"

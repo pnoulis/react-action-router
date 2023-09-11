@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useContextActionRouter } from "./ContextActionRouter.jsx";
+import { debug } from "./debug.js";
 
 function ActionRoute({ path = "", name = "", action, children }) {
   const ctx = useContextActionRouter();
@@ -11,7 +12,7 @@ function ActionRoute({ path = "", name = "", action, children }) {
     }),
   );
 
-  if (ctx.elements[indexRef.current]?.id === ctx.getCurrent()?.id) {
+  if (ctx.routes[indexRef.current]?.id === ctx.current()?.id) {
     return children;
   }
 }

@@ -35,6 +35,41 @@ Responsive UI based on Location and user actions.
 
 ## About The Project
 
+*react-action-router* implements a commonly required pattern in user interfaces.
+
+Namely the need for alternating views based on some user action while at the
+
+same time being Location aware.
+
+
+For example, consider the case where a toolbar component contains a handfull of
+
+buttons which are *not* links. Upon their pressing, a part of the currently
+
+rendered UI outside of the toolbar is replaced by some other component while at
+
+the same time the toolbar content is replaced with content related to the UI
+
+just rendered. The replaced toolbar content usually contains a *back* button
+
+which the user may press in order to return to the previously rendered UI. This
+
+hierarchy of nested replaced UI's may be arbitrarily deep. I hope that this
+
+example clearly demonstrates that a pattern is discernible. Namely the need to
+
+replace components based on some user action while at the same time keeping a
+
+record of those changes so that a user may easily navigate backwards and
+
+forwards.
+
+
+The previous example was meant to cover 1 of the 2 basic concerns of react-action-router.
+
+The second exmaple is meant to clarify what is meant by the phrase *Location aware*
+
+
 A few words about react-router-dom so that one might get a grasp of the
 functionality that react-action-router should emulate among its own unique set
 of capabilities.
@@ -69,6 +104,13 @@ time have a UI that is able to respond both at location change and user actions.
 ## Usage
 
 <p align='right'>(<a href="#readme-top">back to top</a>)</p>
+
+## Roadmap
+
+<p align='right'>(<a href="#readme-top">back to top</a>)</p>
+
+- [ ] make useActionRouter be aware of URL changes without depending
+on react-router-dom
 
 ## Contributing
 

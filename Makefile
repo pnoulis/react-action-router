@@ -62,6 +62,12 @@ run-entry: mode ?= 'development'
 run-entry: env
 	$(LOADENV); $(NODE) $(ENTRY_POINT)
 
+# ------------------------------ SCRATCH ---------------------------- #
+.PHONY: scratch
+scratch: mode ?= 'development'
+scratch: env
+	$(LOADENV); $(NODE) $(PKGDIR)/tmp/scratch.js
+
 # ------------------------------ DEV -------------------------------- #
 .PHONY: dev
 dev: mode ?= 'development'

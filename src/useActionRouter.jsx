@@ -1,87 +1,69 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
+import { normalizePath, regexizePath } from "./utils.js";
+import { debug } from "./debug.js";
 
-function useActionRouter(routes = [], options = {}) {
-  const [stack, setStack] = React.useState(routes.length ? [routes[0]] : []);
-  const elementsRef = React.useRef(routes);
+function useActionRouter() {
+  const [stack, setStack] = React.useState([]);
+  const routesRef = React.useRef([]);
   const location = useLocation();
 
   function setStackMiddleware(newStack) {
-    console.log(newStack);
-    console.log("new stack");
+    debug(newStack, "newStack");
     setStack(newStack);
+  }
+  function current() {
+    return stack.length > 0 ? routesRef.current[stack.at(-1)] : null;
+  }
+  function back() {
+    setStackMiddleware(stack.slice(0, -1));
+  }
+  function forward(name) {
+    if (current()?.name === name) return;
+    for (let i = 0; i < routesRef.current.length; i++) {
+      if (routesRef.current[i].name === name) {
+        setStackMiddleware([...stack, i]);
+        return;
+      }
+    }
+    throw new Error(`Missing ${name} element`);
+  }
+
+  function register({ path, name, action } = {}) {
+    const route = {
+      path: path ? regexizePath(normalizePath(path)) : "",
+      name: name || "",
+    };
+    route.id = route.path + route.name;
+    let i = 0;
+    for (; i < routesRef.current.length; i++) {
+      if (routesRef.current[i].id === route.id) {
+        routesRef.current[i] = route;
+        return i;
+      }
+    }
+    routesRef.current.push(route);
+    return routesRef.current.length - 1;
   }
 
   React.useEffect(() => {
-    for (let i = 0; i < elementsRef.current.length; i++) {
-      const re = new RegExp(`^${elementsRef.current[i].path}$`);
-      if (re.test(location.pathname)) {
-        return setStackMiddleware([elementsRef.current[i]]);
+    for (let i = 0; i < routesRef.current.length; i++) {
+      if (routesRef.current[i].path.test?.(location.pathname)) {
+        setStackMiddleware([i]);
+        return;
       }
     }
     setStackMiddleware([]);
   }, [location]);
 
-  function back() {
-    setStackMiddleware(stack.slice(0, -1));
-  }
-  function forward(name) {
-    let index = -1;
-
-    // Make sure it is not already in the stack
-    if (getCurrent()?.name === name) return;
-
-    for (let i = 0; i < elementsRef.current.length; i++) {
-      if (elementsRef.current[i].name === name) {
-        index = i;
-      }
-    }
-
-    if (index < 0) {
-      throw new Error(`Missing ${name} element`);
-    } else {
-      setStackMiddleware([...stack, elementsRef.current[index]]);
-    }
-  }
-  function register({ path, name, action }) {
-    if (path && path.at(0) !== "/") {
-      path = "/" + path;
-    }
-
-    const id = path + name;
-    let index = -1;
-    for (let i = 0; i < elementsRef.current.length; i++) {
-      if (elementsRef.current[i].id === id) {
-        index = i;
-      }
-    }
-
-    if (index < 0) {
-      elementsRef.current.push({
-        path,
-        name,
-        id,
-        action,
-      });
-      return elementsRef.current.length - 1;
-    } else {
-      return index;
-    }
-  }
-
-  function getCurrent() {
-    return stack.at(-1);
-  }
-
   return {
     stack,
-    setStack,
-    elements: elementsRef.current,
+    routes: routesRef.current,
+    location,
     back,
     forward,
     register,
-    getCurrent,
-    location,
+    current,
   };
 }
 

@@ -68,3 +68,9 @@ First day of development.
 Defined the problem set.
 
 Created a new repository with development tools.
+
+** 11/08/23
+useActionRouter currently maintains two lists of routes. The available routes in
+the form of *elementsRef* and *stack*. Instead one could dispose of *stack* and
+turn it into *index*, a number representing the currently rendered route among
+the list of routes.
