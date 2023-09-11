@@ -37,6 +37,7 @@ A route object could be of the form:
     element: ReactElement,
     // route location
     path: "",
+    id: "",
   }
 #+end_src
 
@@ -46,6 +47,11 @@ routes nor would it introduce special path syntax like regular expressions.
 The Route object UI that is currently rendered would only be superseded if a new
 route is pushed on the stack.
 
+** Types of UI
+
+Some ui triggers changes,
+Some ui is rendered within the toolbar
+Some ui is rendered outside of the toolbar
 ** factory function return value
 
 The factory function could return:
