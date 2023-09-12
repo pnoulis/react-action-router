@@ -22,9 +22,9 @@ function createActionRouter() {
         action,
       }),
     );
-    if (ctx.routes[indexRef.current]?.id === ctx.current()?.id) {
-      return children;
-    }
+    return ctx.routes[indexRef.current]?.id === ctx.current()?.id
+      ? children
+      : null;
   }
   return {
     ContextProvide,
