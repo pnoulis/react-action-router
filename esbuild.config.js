@@ -9,5 +9,6 @@ esbuild.build({
   outdir: "./dist",
   drop: ["console"],
   sourcemap: false,
-  minify: true,
+  minify: false,
+  external: ["react", "react-router-dom"],
 });

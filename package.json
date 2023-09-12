@@ -13,7 +13,7 @@
     "dist"
   ],
   "exports": {
-    ".": "./dist/ReactActionRouter.jsx"
+    ".": "./dist/createActionRouter.js"
   },
   "licence": "MIT",
   "keywords": [
