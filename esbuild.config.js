@@ -5,7 +5,7 @@ esbuild.build({
   platform: "browser",
   target: "esnext",
   format: "esm",
-  entryPoints: ["./src/ReactActionRouter.jsx"],
+  entryPoints: ["./src/create-action-router/createActionRouter.jsx"],
   outdir: "./dist",
   drop: ["console"],
   sourcemap: false,

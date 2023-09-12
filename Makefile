@@ -43,7 +43,7 @@ ENTRY_POINT						 = $(SRCDIR)/$(ENTRY_POINT_BASENAME)
 # Dotenv configuration
 LOADENV                = set -o allexport; source $(PKGDIR)/.env
 ENVDIRS								 = $(PKGDIR)/config/env $(PKGDIR)
-ENVARS                 =
+ENVARS                 = PKGDIR=$(PKGDIR_ABS);ENTRY_POINT=$(ENTRY_POINT)
 
 # Bundler configuration
 BUNDLE                 = $(NODE) $(PKGDIR)/esbuild.config.js
@@ -68,6 +68,20 @@ scratch: mode ?= 'development'
 scratch: env
 	$(LOADENV); $(NODE) $(PKGDIR)/tmp/scratch.js
 
+# ------------------------------ EXAMPLES --------------------------- #
+.PHONY: example-1 example-2
+example-1: mode ?= 'production'
+example-1: ENVARS := $(ENVARS);ENTRY_POINT=$(PKGDIR)/examples/ex_1/ex_1.jsx
+example-1: env
+example-1:
+	$(LOADENV); $(SERVER) serve --mode=$(mode) --force
+
+example-2: mode ?= 'production'
+example-2: ENVARS := $(ENVARS);ENTRY_POINT=$(PKGDIR)/examples/ex_2/ex_2.jsx
+example-2: env
+example-2:
+	$(LOADENV); $(SERVER) serve --mode=$(mode) --force
+
 # ------------------------------ DEV -------------------------------- #
 .PHONY: dev
 dev: mode ?= 'development'
@@ -91,10 +105,12 @@ clean:
 .PHONY: env env-dry
 env: mode ?= 'production'
 env:
-	$(DOTENV) --mode=$(mode) $(ENVDIRS) | $(SORT) > $(PKGDIR)/.env
+	$(DOTENV) --mode=$(mode) --environment="$(ENVARS)" $(ENVDIRS) \
+	| $(SORT) > $(PKGDIR)/.env
 
 env-dry:
-	$(DOTENV) --mode=$(mode) $(ENVDIRS) | $(SORT)
+	$(DOTENV) --mode=$(mode) --environment="$(ENVARS)" $(ENVDIRS) \
+	| $(SORT)
 
 # ------------------------------ HELP ------------------------------- #
 .PHONY: help

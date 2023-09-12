@@ -32,5 +32,9 @@ build
 # node
 node_modules
 package-lock.json
+
+# transient
 tmp
 
+# wsl
+*:Zone.Identifier

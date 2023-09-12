@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { normalizePath, regexizePath } from "./utils.js";
-import { debug } from "./debug.js";
 
 function useActionRouter() {
   const [stack, setStack] = React.useState([]);
@@ -9,7 +8,6 @@ function useActionRouter() {
   const location = useLocation();
 
   function setStackMiddleware(newStack) {
-    debug(newStack, "newStack");
     setStack(newStack);
   }
   function current() {
