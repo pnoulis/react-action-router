@@ -12,6 +12,12 @@ import { RightRouter } from "./RightRouter.jsx";
 import { NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
 
+/*
+  This example showcases simple navigation through user actions.
+  Page 1 makes use of 2 sibling routers.
+  Page 2 make use of 1 parent router and a nested router.
+ */
+
 function Page() {
   return (
     <>

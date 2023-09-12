@@ -61,6 +61,7 @@ The factory function could return:
 - Components
 - all of the above
 
+* Allow ActionRoute components to render in designated mount points and inherit context
 * logs
 ** 09/08/23
 First day of development.

@@ -1,5 +1,7 @@
 import * as React from "react";
+import { createPortal } from "react-dom";
 import { useActionRouter } from "../useActionRouter.jsx";
+import { debug } from "../debug.js";
 
 function createActionRouter() {
   const Context = React.createContext(null);
@@ -13,7 +15,16 @@ function createActionRouter() {
     }
     return ctx;
   }
-  function ActionRoute({ path = "", name = "", action, children }) {
+  function MountPoint({ id = "", children }) {
+    return <div id={id}>{children}</div>;
+  }
+  function ActionRoute({
+    path = "",
+    name = "",
+    target = "",
+    action,
+    children,
+  }) {
     const ctx = useContext();
     const indexRef = React.useRef(
       ctx.register({
@@ -23,12 +34,15 @@ function createActionRouter() {
       }),
     );
     return ctx.routes[indexRef.current]?.id === ctx.current()?.id
-      ? children
+      ? target
+        ? createPortal(children, document.getElementById(target))
+        : children
       : null;
   }
   return {
     ContextProvide,
     useContext,
+    MountPoint,
     ActionRoute,
     useActionRouter,
   };
