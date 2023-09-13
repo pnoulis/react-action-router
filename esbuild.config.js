@@ -1,7 +1,6 @@
 import * as esbuild from "esbuild";
 
 const MODE = process.env.MODE;
-console.log(MODE);
 esbuild.build({
   bundle: true,
   platform: "browser",

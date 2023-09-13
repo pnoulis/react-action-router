@@ -14,8 +14,21 @@ function useActionRouter() {
   function current() {
     return stack.length > 0 ? routesRef.current[stack.at(-1)] : null;
   }
-  function back() {
-    setStackMiddleware(stack.slice(0, -1));
+  function back(name) {
+    const newStack = stack.slice(0, -1);
+    if (name) {
+      for (let i = 0; i < routesRef.current.length; i++) {
+        if (name === routesRef.current[i].name) {
+          if (newStack.at(-1)?.name === name) {
+            return setStackMiddleware(newStack);
+          } else {
+            return setStackMiddleware(newStack.concat(routesRef.current[i]));
+          }
+        }
+      }
+      throw new Error(`Missing ${name} element`);
+    }
+    setStackMiddleware(newStack);
   }
   function forward(name) {
     if (current()?.name === name) return;
