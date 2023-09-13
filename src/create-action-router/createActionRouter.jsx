@@ -1,7 +1,6 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
 import { useActionRouter } from "../useActionRouter.jsx";
-import { debug } from "../debug.js";
 
 function createActionRouter() {
   const Context = React.createContext(null);

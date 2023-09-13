@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { normalizePath, regexizePath } from "./utils.js";
+import { debug } from "./debug.js";
 
 function useActionRouter() {
   const [stack, setStack] = React.useState([]);
@@ -53,6 +54,10 @@ function useActionRouter() {
     }
     setStackMiddleware([]);
   }, [location]);
+
+  React.useEffect(() => {
+    debug(stack, "STACK");
+  }, [stack]);
 
   return {
     stack,

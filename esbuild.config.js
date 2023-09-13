@@ -1,5 +1,7 @@
 import * as esbuild from "esbuild";
 
+const MODE = process.env.MODE;
+console.log(MODE);
 esbuild.build({
   bundle: true,
   platform: "browser",
@@ -7,8 +9,8 @@ esbuild.build({
   format: "esm",
   entryPoints: ["./src/create-action-router/createActionRouter.jsx"],
   outdir: "./dist",
-  drop: ["console"],
+  drop: MODE === "production" ? ["console"] : [],
   sourcemap: false,
-  minify: false,
-  external: ["react", "react-router-dom"],
+  minify: MODE === "production",
+  external: ["react", "react-router-dom", "react-dom"],
 });
