@@ -25,18 +25,27 @@ function createActionRouter() {
     children,
   }) {
     const ctx = useContext();
-    const indexRef = React.useRef(
-      ctx.register({
-        path,
-        name,
-        action,
-      }),
-    );
-    return ctx.routes[indexRef.current]?.id === ctx.current()?.id
-      ? target
-        ? createPortal(children, document.getElementById(target))
-        : children
-      : null;
+    const [index, setIndex] = React.useState(-1);
+
+    // Because register() might result in rendering of this
+    // route it needs to be called after initial rendering.
+    React.useEffect(() => {
+      setIndex(
+        ctx.register({
+          path,
+          name,
+          action,
+        }),
+      );
+    }, [path, name, target]);
+
+    if (index < 0 || ctx.routes[index]?.id !== ctx.current()?.id) {
+      return null;
+    } else if (target) {
+      return createPortal(children, document.getElementById(target));
+    } else {
+      return children;
+    }
   }
   return {
     ContextProvide,

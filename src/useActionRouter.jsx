@@ -55,6 +55,9 @@ function useActionRouter() {
       }
     }
     routesRef.current.push(route);
+    if (route.path.test?.(location.pathname)) {
+      setStackMiddleware([i]);
+    }
     return routesRef.current.length - 1;
   }
 
