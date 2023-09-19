@@ -101,6 +101,8 @@ clean:
 	-$(RM) -rdf $(PKGDIR)/dist
 	-$(RM) $(PKGDIR)/.env
 
+distclean: clean
+
 # ------------------------------ ENV -------------------------------- #
 .PHONY: env env-dry
 env: mode ?= 'production'
