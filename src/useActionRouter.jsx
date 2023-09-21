@@ -63,7 +63,7 @@ function useActionRouter() {
 
   React.useEffect(() => {
     for (let i = 0; i < routesRef.current.length; i++) {
-      if (routesRef.current[i].path.test?.(location.pathname)) {
+      if (routesRef.current[i].path.test?.(decodeURI(location.pathname))) {
         setStackMiddleware([i]);
         return;
       }
