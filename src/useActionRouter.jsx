@@ -43,8 +43,8 @@ function useActionRouter() {
 
   function register({ path, name, action } = {}) {
     const route = {
-      path: path ? regexizePath(normalizePath(path)) : "",
-      name: name || "",
+      path: path ? regexizePath(normalizePath(decodeURI(path))) : "",
+      name: name ? decodeURI(name) : "",
     };
     route.id = route.path + route.name;
     let i = 0;
@@ -55,7 +55,7 @@ function useActionRouter() {
       }
     }
     routesRef.current.push(route);
-    if (route.path.test?.(location.pathname)) {
+    if (route.path.test?.(decodeURI(location.pathname))) {
       setStackMiddleware([i]);
     }
     return routesRef.current.length - 1;
@@ -63,6 +63,9 @@ function useActionRouter() {
 
   React.useEffect(() => {
     for (let i = 0; i < routesRef.current.length; i++) {
+      console.log(
+        routesRef.current[i].path.test?.(decodeURI(location.pathname)),
+      );
       if (routesRef.current[i].path.test?.(decodeURI(location.pathname))) {
         setStackMiddleware([i]);
         return;
@@ -72,6 +75,7 @@ function useActionRouter() {
   }, [location]);
 
   React.useEffect(() => {
+    console.dir(routesRef.current, { depth: null });
     debug(stack, "STACK");
   }, [stack]);
 
